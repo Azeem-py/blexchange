@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/bt v5/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/FA5PRO-master/css/all.css">
+    <script src="../static/jquery-3.5.1.min.js"></script>
+    <title>BLEXCHANGE</title>
+</head>
+<body>
+
+    <!-- NAVBAR STARTS  -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+        <a class="navbar-brand" href="#">BLEXCHANGE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto nav-ul">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact Us</a>
+            </li>
+            <li class="nav-item m-md-2 btn-list">
+              <a id="login_link"  href="/login"><button type="button" id = "login" class="btn btn-danger">{{btn}}</button></a>
+              <a id="signup_link" href="/login"><button type="button" id = "signup" class="btn btn-outline-danger">{{btn2}}</button></a>
+          </li>
+            
+        </div>
+        </div>
+    </nav>
+
+    <!-- NAVBAR ENDS -->
+
+    <div class="container-fluid my-2">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 border border-2 py-4 px-5">
+              <div><h1 class="text-center mb-3" style="color: #d00000;">LOGIN</h1></div>
+              <form id="login_form">
+                <div class="row shadow p-3 rounded">
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" id="login_email" placeholder="name@email.com">
+                    <small class="text-danger" id="login_warning" style="display: none;"></small>
+                  </div>
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" id = "login_password" placeholder="Your password">
+                    <small class="text-danger" id ="password_warning" style="display: none;"></small> 
+                  </div>
+                  <input type="hidden" id='type' value="loginVal">
+                  <div class="col-md-6 mb-3">
+                    <button type="submit" class ="btn btn-danger col-md-4" for="login_form">Login</button>
+                  </div>
+                </div>
+                </form>
+                
+                <form id = signup_form>
+                  <div><h1 class="text-center my-3" style="color: #d00000;">SIGN UP</h1></div>
+                  <div class="row mt-3 shadow p-5 rounded">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Name</label>
+                      <input type="text" id ="name"class="form-control" placeholder="John Doe">
+                      <small class="text-danger" style="display: none;" id="nameWarning"></small>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Email</label>
+                      <input type="email" id="signup_email" class="form-control" placeholder="name@email.com">
+                      <small class="text-danger" style="display: none;" id="emailWarning"></small>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Password</label>
+                      <input type="password" id="signup_password" class="form-control" placeholder="Your password">
+                      <small class="text-danger" style="display: none;" id="passWarning"></small>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Confirm password</label>
+                      <input type="password" id="confirm_password" class="form-control" placeholder="Confirm password">
+                      <small class="text-danger" style="display: none;" id="con_passWarning"></small>
+                    </div>
+                    <input type="hidden" id='type2' value="signupVal">
+                    <div class="col-md-6 mb-3">
+                      <button type="submit" class ="btn btn-danger col-md-4" for = "signup_form">Create</button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    
+    
+
+    <script src="../static/bt v5/popper.min.js"></script>
+    <script src="../static/bt v5/bootstrap.min.js"></script>
+</body>
+
+<script>
+  $(document).ready(function(){
+
+    $('#login, #signup').hide();
+
+    $('#login_form').submit(function(event){
+
+      $.ajax({
+        data: {
+          loginEmail: $('#login_email').val(), 
+          loginPassword: $('#login_password').val(), 
+          type: $('#type').val()
+        },
+        url: '/login',
+        method: 'POST'  
+      })
+
+      .done(function(data){
+        // console.log('Done')
+        if(data.missingData){
+          $('#login_warning').text(data.missingData).show();
+          $('#password_warning').hide();
+
+        }
+        else if (data.emailError){
+          console.log(data.emailError)
+          $('#login_warning').text(data.emailError).show();
+          $('#password_warning').hide();
+
+        }
+        else if(data.wrongPass){
+          $('#password_warning').text(data.wrongPass);
+          $('#password_warning').show();
+          $('#login_warning').hide();
+        }
+      })
+      event.preventDefault();
+    });
+
+
+    $('#signup_form').submit(function(event){
+      $.ajax({
+        data:{
+          email: $('#signup_email').val(),
+          password: $('#signup_password').val(),
+          con_password: $('#confirm_password').val(),
+          name: $('#name').val(),
+          type: $('#type2').val()
+        },
+        url: '/login',
+        type : 'POST'
+      })
+      .done(function(data){
+        if (data.passError){
+          $('#passWarning').text(data.passError).show();
+          $('#con_passWarning, #nameWarning, #emailWarning').hide();
+        }
+        else if(data.con_passWarning){
+          $('#con_passWarning').text(data.con_passWarning).show();
+          $('#passWarning, #nameWarning, #emailWarning').hide();
+        }
+        else if(data.passWarning){
+          $('#passWarning').text(data.passWarning).show();
+          $('#con_passWarning, #nameWarning, #emailWarning').hide();
+        }
+        else if(data.emailWarning){
+          $('#emailWarning').text(data.emailWarning).show();
+          $('#passWarning, #con_passWarning, #nameWarning').hide();
+        }
+        else if(data.usedEmail){
+          $('#emailWarning').text(data.usedEmail).show();
+          $('#passWarning, #con_passWarning, #nameWarning').hide();
+        }
+        else if(data.nameWarning){
+          $('#nameWarning').text(data.nameWarning).show();
+          $('#passWarning, #con_passWarning, #emailWarning').hide();
+        }
+
+      });
+
+
+      event.preventDefault();
+    })
+
+
+  });
+</script>
+</html>
