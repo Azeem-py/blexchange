@@ -1,0 +1,62 @@
+.navbar-brand{
+    font-size: 24px;
+    color: #dc2f02 !important;
+    font-weight: 900;
+    z-index: 1000000;
+}
+
+.nav-ul li a{
+    color: #f73809 !important;
+    font-size: 20px;
+    font-weight: 500;
+}
+.nav-ul li a:hover, .nav-ul li .active{
+    color: #d00000 !important;
+}
+
+.intro{
+    height: 450px;
+    background-color: #f13607;
+    color: #fff;
+}
+
+.intro h2{
+    font-size: 50px;
+    margin-top: 120px !important;
+    margin-bottom: 10px;
+}
+.intro h3{
+    font-size: 30px;
+}
+.intro h2{
+    font-size: 50px;
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+.intro-2{
+    text-align: center;
+    color: #d00000;
+    font-weight: 700;
+}
+
+.dos i{
+    font-size: 60px;
+    color: #d00000;
+
+}
+
+.dos h3{
+    color: #f13607;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.dos p{
+    font-size: 20px;
+    font-weight: 500;
+}
+/* .btn-list .btn-primary{
+    background-color: #f73809;
+    outline: none;
+
+} */

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/bt v5/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/FA5PRO-master/css/all.css">
+    <script src="../static/jquery-3.5.1.min.js"></script>
+    <title>BLEXCHANGE</title>
+</head>
+<body>
+
+    <!-- NAVBAR STARTS  -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container">
+        <a class="navbar-brand" href="#">BLEXCHANGE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto nav-ul">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact Us</a>
+            </li>
+            <li class="nav-item m-md-2 btn-list">
+                <a id="login_link"  href="/login"><button type="button" id = "login" class="btn btn-danger">{{btn}}</button></a>
+                <a id="signup_link" href="/login"><button type="button" id = "signup" class="btn btn-outline-danger">{{btn2}}</button></a>
+            </li>
+            
+        </div>
+        </div>
+    </nav>
+
+    <!-- NAVBAR ENDS -->
+    
+    <div class="container-fluid intro" style="text-align: center;">
+        <div class="row"><h2>WELCOME TO BLEXCHANGE</h2></div>
+        <div class="row"><h3>You can get reward for what you do for others!</h3></div>
+    </div>
+    <div class="container mt-5 p-3 shadow intro-2">
+        <h3>Here we give and get backlink and guest post to and from other blogs with amazing contents</h3>
+    </div>
+    
+
+    <div class="container mt-4 dos" style="text-align: center;">
+        <div class="row">
+            <div class="col-md m-2 p-4 shadow-sm">
+                <div class="row"><i class="far fa-link p-3"></i></div>
+                <div class="row"><h3>GIVE BACKLINK</h3></div>
+                <div class="row"><p>Linking to article or blog's with good quality is very beneficial. Look for article to feature in your next post and someone is going to feature your quality posts too</p></div>
+            </div>
+            <div class="col-md m-2 p-4 shadow-sm">
+                <div class="row"><i class="fas fa-external-link-square-alt p-3"></i></div>
+                <div class="row"><h3>GET BACKLINK</h3></div>
+                <div class="row"><p>With this community, you can get backlink and guest posts as much as you link and as much as you can give. Getting backlinks from quality articles will surely do you good</p></div>
+            </div>
+            <div class="col-md m-2 p-4 shadow-sm">
+                <div class="row"><i class="fas fa-unlink p-3"></i></div>
+                <div class="row"><h3>DON'T UNLINK</h3></div>
+                <div class="row"><p>After giving backlink you shouldn't have a cause to unlink because you have links on other users blog's too. Imagine them removing yours too</p></div>
+            </div>
+            <div class="col-md m-2 p-4 shadow-sm">
+                <div class="row"><i class="far fa-heart-broken p-3"></i></div>
+                <div class="row"><h3>IT AGAINST THE RULE</h3></div>
+                <div class="row"><p>Trying to scam other users is against the rule of this community and there's penalty for that. Example your account can be banned or suspended</p></div>
+            </div>
+        </div>
+    </div>
+        
+
+
+    <script src="../static/bt v5/popper.min.js"></script>
+    <script src="../static/bt v5/bootstrap.min.js"></script>
+</body>
+
+<script>
+    $(document).ready(function(){
+        if ($('#login').text()=='logout'){
+          $('#signup').hide();
+          $('#login_link').attr('href', '/logout')
+          console.log('logout btn')
+        }
+        else if($('#login').text()!='logout'){
+            $('#login').show();
+            $('#signup').show();
+            console.log('It\'s shows both')
+        }
+        else{
+                $('#login').hide();
+                $('#signup').hide();
+                console.log('No btn')
+        }
+    });
+</script>
+</html>
