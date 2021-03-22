@@ -59,6 +59,7 @@ def do_log():
                                     cursor.execute(_SQL, (name, email, password, IP, browers_string))
                                     session['logged_in'] = True
                                     print('Now going to /links')
+                                    #my problem is here
                                     return redirect('/links')
                             return jsonify({"passError":"Password and confirm password needs to be the same"})
                         return jsonify({"con_passWarning": "Password needs to be confirmed"})
