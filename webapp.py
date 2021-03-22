@@ -33,6 +33,7 @@ def do_log():
                     cursor.execute(_SQL, (email,))
                     data = cursor.fetchall()[0][0]
                     if password == data:
+                        #and here too
                         return redirect('/links')
                     return jsonify({"wrongPass":"Incorrect Password"})
             return jsonify({"missingData":"Email and password needs to be provided"})
