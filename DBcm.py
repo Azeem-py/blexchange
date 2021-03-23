@@ -1,3 +1,5 @@
+#database context manager
+
 import mysql.connector
 class UseDB:
     def __init__(self, config):
